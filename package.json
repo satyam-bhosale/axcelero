@@ -1,0 +1,23 @@
+{
+  "name": "axcelero",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:backend": "turbo run dev --filter=@axcelero/backend",
+    "dev:admin": "turbo run dev --filter=@axcelero/admin",
+    "dev:web": "turbo run dev --filter=@axcelero/web",
+
+    "start:backend": "turbo run start --filter=@axcelero/backend",
+    
+    "build:backend": "turbo run build --filter=@axcelero/backend",
+    "build:admin": "turbo run build --filter=@axcelero/admin",
+    "build:web": "turbo run build --filter=@axcelero/web",
+
+    "build:utils": "turbo run build --filter=@axcelero/utils"
+  },
+  "dependencies": {
+    "turbo": "^2.9.18"
+  },
+  "license": "ISC",
+  "packageManager": "pnpm@10.18.3"
+}

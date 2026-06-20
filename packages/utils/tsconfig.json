@@ -1,0 +1,18 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "module": "esnext",
+        "moduleResolution": "bundler" ,
+        "declaration": true,
+        "declarationMap": true,
+        "emitDeclarationOnly": true,
+        "rootDir": ".",
+        "outDir": "dist",
+        "baseUrl": ".",
+        "paths": {
+            "@utils/*": ["./src/*"]
+        },
+        "ignoreDeprecations": "6.0"    
+    
+    }
+}

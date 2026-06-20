@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        // language
+        "target": "esnext",
+        // modules
+        "moduleDetection": "force",
+        "verbatimModuleSyntax": true,
+        "resolveJsonModule": true,
+        // emit
+        "sourceMap": true,
+        // type-checking
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+        // interop
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+    }
+}
