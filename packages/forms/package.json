@@ -1,0 +1,30 @@
+{
+  "name": "@axcelero/forms",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./web": {
+      "import": "./src/web/index.ts",
+      "types": "./src/web/index.ts",
+      "default": "./src/web/index.ts"
+    }
+  },
+  "dependencies": {
+    "@axcelero/contracts": "workspace:*",
+    "@hookform/resolvers": "catalog:",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-hook-form": "catalog:"
+  },
+  "devDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-hook-form": "catalog:",
+    "typescript": "catalog:"
+  },
+  "license": "ISC"
+}
