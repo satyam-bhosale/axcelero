@@ -2,7 +2,11 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -17,7 +21,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@client/*": ["./*"],
+      "@shadcn/ui/*": ["../../packages/ui/src/*"]
     }
   },
   "include": [
@@ -28,5 +33,7 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
