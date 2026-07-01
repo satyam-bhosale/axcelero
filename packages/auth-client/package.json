@@ -1,0 +1,25 @@
+{
+  "name": "@axcelero/auth-client",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./web": {
+      "import": "./src/web/index.ts",
+      "types": "./src/web/index.ts",
+      "default": "./src/web/index.ts"
+    }
+  },
+  "dependencies": {
+    "better-auth": "catalog:"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "react": "catalog:",
+    "typescript": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "catalog:"
+  },
+  "license": "ISC"
+}
