@@ -22,6 +22,7 @@
     "@logtape/pretty": "^2.1.5",
     "@neondatabase/serverless": "^1.1.0",
     "@upstash/redis": "^1.38.0",
+    "@vercel/functions": "^3.7.5",
     "argon2": "^0.44.0",
     "better-auth": "catalog:",
     "dotenv": "^17.4.2",

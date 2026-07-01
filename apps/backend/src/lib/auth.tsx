@@ -3,15 +3,13 @@ import env from "@backend/src/config/env.js";
 import { authLogger } from "@backend/src/config/logger.js";
 import db from "@backend/src/db/index.js";
 import { accounts, sessions, users, verifications } from "@backend/src/db/schemas/auth.js";
-import RequestPasswordResetOtpEmail from "@backend/src/emails/templates/auth/request-password-reset-otp.js";
-import SendVerificationOtpEmail from "@backend/src/emails/templates/auth/send-verification-otp.js";
+import { sendRequestPasswordResetOtpEmail, sendVerificationOtpEmail } from "@backend/src/emails/functions/index.js";
 import { hashPassword, verifyPassword } from "@backend/src/lib/password.js";
 import redis from "@backend/src/lib/redis.js";
-import resend from "@backend/src/lib/resend.js";
+import { waitUntil } from "@vercel/functions";
 import { betterAuth, type RateLimit } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { emailOTP } from "better-auth/plugins";
-import { pretty, render } from "react-email";
 
 const isProd = env.VERCEL_ENV === 'production' || env.NODE_ENV === 'production';
 const { RATELIMIT, PREFIX, OTP_LENGTH } = AUTH_CONSTANTS;
@@ -40,23 +38,22 @@ const auth = betterAuth({
         emailOTP({
             overrideDefaultEmailVerification: true,
             otpLength: OTP_LENGTH,
+            storeOTP: "hashed",
             async sendVerificationOTP({ email, type, otp }) {
                 switch (type) {
                     case "email-verification":
-                        void resend.emails.send({
-                            from: `Axcelero <${env.SYSTEM_EMAIL_ID}>`,
-                            to: [email],
-                            subject: "Verify your Axcelero Account",
-                            html: await pretty(await render(<SendVerificationOtpEmail otp={otp} />))
-                        });
+                        if (env.VERCEL_ENV) {
+                            waitUntil(sendVerificationOtpEmail(email, otp));
+                        } else {
+                            sendVerificationOtpEmail(email, otp);
+                        }
                         break;
                     case "forget-password":
-                        void resend.emails.send({
-                            from: `Axcelero <${env.SYSTEM_EMAIL_ID}>`,
-                            to: [email],
-                            subject: "Reset password of your Axcelero account",
-                            html: await pretty(await render(<RequestPasswordResetOtpEmail otp={otp} />))
-                        });
+                        if (env.VERCEL_ENV) {
+                            waitUntil(sendRequestPasswordResetOtpEmail(email, otp));
+                        } else {
+                            sendRequestPasswordResetOtpEmail(email, otp);
+                        }
                         break;
                 }
             },
