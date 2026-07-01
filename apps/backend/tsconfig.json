@@ -7,11 +7,10 @@
         "rootDir": ".",
         "outDir": "dist",
         "jsx": "react-jsx",
-        "jsxImportSource": "hono/jsx",
         "paths": {
             "@backend/*": ["./*"]
         }
     },
-    "include": ["src"],
+    "include": ["src/**/*.ts", "src/**/*.tsx", "drizzle.config.ts"],
     "exclude": ["node_modules", "dist"]
 }

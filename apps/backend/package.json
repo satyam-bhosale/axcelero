@@ -5,21 +5,44 @@
   "type": "module",
   "scripts": {
     "build": "tsc && tsc-alias",
-    "dev": "cross-env NODE-ENV=development tsx watch src/server.ts",
-    "start": "cross-env NODE_ENV=production node dist/src/server.js"
+    "dev": "cross-env NODE_ENV=development tsx watch src/server.ts",
+    "start": "node dist/src/server.js",
+    "db:auth:generate": "pnpm build && pnpm dlx auth@latest generate --config ./dist/src/lib/auth.js --output ./src/db/schemas/auth.ts",
+    "email": "email dev --dir src/emails --port=3002",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate --config=drizzle.config.ts",
+    "db:studio": "drizzle-kit studio --verbose --port 3002 --config=drizzle.config.ts"
   },
   "dependencies": {
+    "@axcelero/constants": "workspace:*",
     "@axcelero/utils": "workspace:*",
     "@hono/node-server": "^2.0.5",
-    "cross-env": "^10.1.0",
+    "@logtape/hono": "^2.1.5",
+    "@logtape/logtape": "^2.1.5",
+    "@logtape/pretty": "^2.1.5",
+    "@neondatabase/serverless": "^1.1.0",
+    "@upstash/redis": "^1.38.0",
+    "argon2": "^0.44.0",
+    "better-auth": "catalog:",
     "dotenv": "^17.4.2",
-    "hono": "^4.12.26"
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.12.26",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-email": "6.6.3",
+    "resend": "^6.14.0",
+    "zod": "catalog:"
   },
   "devDependencies": {
-    "@types/node": "^26.0.0",
+    "@react-email/ui": "6.6.3",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "cross-env": "^10.1.0",
+    "drizzle-kit": "^0.31.10",
     "tsc-alias": "^1.8.17",
     "tsx": "^4.22.4",
-    "typescript": "^6.0.3"
+    "typescript": "catalog:"
   },
   "license": "ISC"
 }
